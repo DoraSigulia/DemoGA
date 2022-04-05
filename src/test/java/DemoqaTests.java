@@ -1,22 +1,14 @@
-
-
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Random;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+
 
 public class DemoqaTests {
 
@@ -30,7 +22,6 @@ public class DemoqaTests {
     void OpenPage() {
         open("https://demoqa.com/automation-practice-form");
     }
-
 
     @Test
     void SubmitWithoutValue() {
@@ -67,7 +58,6 @@ public class DemoqaTests {
         $(byXpath("//td[contains(.,'Mobile')]/following-sibling::td")).shouldHave(text(mobile_number));
         $("#closeLargeModal").click();
     }
-
 
     // Create random string
     public String generatedString() {
