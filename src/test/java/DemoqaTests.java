@@ -19,18 +19,18 @@ public class DemoqaTests {
     }
 
     @BeforeEach
-    void OpenPage() {
+    void openPage() {
         open("https://demoqa.com/automation-practice-form");
     }
 
     @Test
-    void SubmitWithoutValue() {
+    void submitWithoutValue() {
         $("#submit").click();
         $(".modal-content").shouldNotBe(visible);
     }
 
     @Test
-    void FillFormsWithObligatoryFields() {
+    void fillFormsWithObligatoryFields() {
         String first_name = generatedString();
         String last_name = generatedString();
         String user_email = generatedString() + "@gmail.com";
@@ -49,7 +49,12 @@ public class DemoqaTests {
         $("#subjectsInput").sendKeys("eng");
         $(".subjects-auto-complete__option").click();
         $("#hobbiesWrapper .custom-control").click();
-        $("#uploadPicture").sendKeys("C:\\Users\\22\\IdeaProjects\\QaGuruProject\\photo\\cute_cat.jpg");
+        $("#uploadPicture").uploadFromClasspath("cute_cat.jpg");
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
+
         $("#submit").click();
         $(".modal-content").shouldBe(visible);
         $(byXpath("//td[contains(.,'Student Name')]/following-sibling::td")).shouldHave(text(first_name + " " + last_name));
