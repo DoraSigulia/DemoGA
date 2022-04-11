@@ -54,7 +54,6 @@ public class DemoqaTests {
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
-
         $("#submit").click();
         $(".modal-content").shouldBe(visible);
         $(byXpath("//td[contains(.,'Student Name')]/following-sibling::td")).shouldHave(text(first_name + " " + last_name));
