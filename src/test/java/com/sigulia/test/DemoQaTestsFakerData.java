@@ -53,11 +53,9 @@ public class DemoQaTestsFakerData {
         $("#hobbiesWrapper .custom-control").click();
         $("#uploadPicture").uploadFromClasspath("cute_cat.jpg");
 
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText(state)).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText(city)).click();
-        registationFormPage.clickOnSubmitButton()
+        registationFormPage.setState(state)
+                .setCity(city)
+                .clickOnSubmitButton()
                 .checkResult("Student Name", expectedFullName)
                 .checkResult("Student Email", user_email)
                 .checkResult("Mobile", mobile_number)

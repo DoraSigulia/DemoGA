@@ -19,7 +19,8 @@ public class RegistationFormPage {
                     subjects = $("#subjectsInput"),
                     address = $("#currentAddress"),
                     city = $("#city"),
-                    state = $("#state");
+                    state = $("#state"),
+                    stateCityWrapper = $("#stateCity-wrapper");
 
 
 
@@ -51,6 +52,18 @@ public class RegistationFormPage {
     }
     public RegistationFormPage setAddress(String value) {
         address.setValue(value);
+        return this;
+    }
+
+    public RegistationFormPage setState(String value) {
+        state.click();
+        stateCityWrapper.$(byText(value)).click();
+        return this;
+    }
+
+    public RegistationFormPage setCity(String value) {
+        city.click();
+        stateCityWrapper.$(byText(value)).click();
         return this;
     }
 
