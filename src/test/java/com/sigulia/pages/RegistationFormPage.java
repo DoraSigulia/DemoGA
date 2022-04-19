@@ -1,6 +1,8 @@
 package com.sigulia.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.sigulia.pages.components.CalendarComponent;
+import org.openqa.selenium.Dimension;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -10,17 +12,25 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistationFormPage {
 
+    CalendarComponent calendar = new CalendarComponent();
+
     // locators
     SelenideElement firstName = $("#firstName"),
                     lastName = $("#lastName"),
                     userEmail = $("#userEmail"),
                     mobileNumber = $("#userNumber"),
-                    genter = $("#genterWrapper"),
+                    gender = $("#genterWrapper"),
                     subjects = $("#subjectsInput"),
+                    subjectsOptions = $(".subjects-auto-complete__option"),
                     address = $("#currentAddress"),
                     city = $("#city"),
                     state = $("#state"),
-                    stateCityWrapper = $("#stateCity-wrapper");
+                    stateCityWrapper = $("#stateCity-wrapper"),
+                    submitButton = $("#submit"),
+                    table = $(".table-responsive"),
+                    picture = $("#uploadPicture"),
+                    hobbies = $("#hobbiesWrapper .custom-control"),
+                    dateCalendar = $("#dateOfBirthInput");
 
 
 
@@ -29,7 +39,6 @@ public class RegistationFormPage {
         open("/automation-practice-form");
         return this;
     }
-
 
     public RegistationFormPage setFirstName(String value) {
         firstName.setValue(value);
@@ -67,14 +76,52 @@ public class RegistationFormPage {
         return this;
     }
 
+    public RegistationFormPage setGender(String value) {
+        gender.$(byText(value)).click();
+        return this;
+    }
+
+    public RegistationFormPage getGender() {
+//        SelenideElement gender = $("#genterWrapper");
+//        int x = gender.$$("[name='gender']").size();
+//        String genderArray[];
+//        genderArray = new String[3];
+//        String value = gender.$$("[name='gender']").get(1).getValue();
+//        genderArray [1] = value;
+
+        return this;
+    }
+
+    public RegistationFormPage setPicture (String value) {
+        picture.uploadFromClasspath(value);
+        return this;
+    }
+
+    public RegistationFormPage setSubjects(String value) {
+        subjects.sendKeys(value);
+        subjectsOptions.click();
+        return this;
+    }
+
+    public RegistationFormPage setHobbies(String value) {
+        hobbies.$(byText(value)).click();
+        return this;
+    }
+
+    public RegistationFormPage setDateCalendar(String day, String month, String year) {
+        dateCalendar.click();
+        calendar.setDate(day, month, year);
+        return this;
+    }
+
     public RegistationFormPage clickOnSubmitButton() {
-        $("#submit").click();
-        $(".modal-content").shouldBe(visible);
+        submitButton.click();
+        table.shouldBe(visible);
         return this;
     }
 
     public RegistationFormPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key))
+        table.$(byText(key))
                 .parent().shouldHave(text(value));
         return this;
     }

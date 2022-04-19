@@ -28,7 +28,13 @@ public class DemoQaTestsFakerData {
             gender = "Other",
             subjects = "English",
             state = "NCR",
-            city = "Delhi";
+            city = "Delhi",
+            namePhoto = "cute_cat.jpg",
+            hobbies = "Sports",
+            day = String.valueOf(faker.number().numberBetween(1, 31)),
+            month = "March",
+            year = String.valueOf(faker.number().numberBetween(1980, 2000));
+
     String expectedFullName = format("" + first_name + " " + last_name + "");
 
     RegistationFormPage registationFormPage = new RegistationFormPage();
@@ -41,25 +47,24 @@ public class DemoQaTestsFakerData {
                 .setLastName(last_name)
                 .setUserEmail(user_email)
                 .setMobileNumber(mobile_number)
-                .setAddress(address);
-
-        $("#genterWrapper").$(byText(gender)).click();
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").find(byText("1999")).click();
-        $(".react-datepicker__month .react-datepicker__day").click();
-        String date_input = $("#dateOfBirthInput").getValue();
-        $("#subjectsInput").sendKeys(subjects);
-        $(".subjects-auto-complete__option").click();
-        $("#hobbiesWrapper .custom-control").click();
-        $("#uploadPicture").uploadFromClasspath("cute_cat.jpg");
-
-        registationFormPage.setState(state)
+                .setAddress(address)
+                .setGender(gender)
+                .setDateCalendar(day, month, year)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
+                .setPicture(namePhoto)
+                .setState(state)
                 .setCity(city)
                 .clickOnSubmitButton()
                 .checkResult("Student Name", expectedFullName)
                 .checkResult("Student Email", user_email)
+                .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile_number)
+                //.checkResult("Date of Birth", mobile_number)
+                .checkResult("Subjects", subjects)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", namePhoto)
                 .checkResult("Address", address)
-                .checkResult("Gender", gender);
+                .checkResult("State and City", state + " " + city);
     }
 }
