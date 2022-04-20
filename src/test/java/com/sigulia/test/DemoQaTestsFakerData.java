@@ -4,8 +4,6 @@ import com.github.javafaker.Faker;
 import com.sigulia.pages.RegistationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
 import static java.lang.String.format;
 
 
@@ -16,7 +14,6 @@ public class DemoQaTestsFakerData {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
     }
-
 
     Faker faker = new Faker();
 
@@ -31,14 +28,13 @@ public class DemoQaTestsFakerData {
             city = "Delhi",
             namePhoto = "cute_cat.jpg",
             hobbies = "Sports",
-            day = String.valueOf(faker.number().numberBetween(1, 31)),
+            day = String.valueOf(faker.number().numberBetween(10, 30)),
             month = "March",
-            year = String.valueOf(faker.number().numberBetween(1980, 2000));
-
-    String expectedFullName = format("" + first_name + " " + last_name + "");
+            year = String.valueOf(faker.number().numberBetween(1980, 2000)),
+            expectedFullName = format("" + first_name + " " + last_name + ""),
+            expectedDateBirth = format("" + day + " " + month + "," + year + "");
 
     RegistationFormPage registationFormPage = new RegistationFormPage();
-
 
     @Test
     void fillFormsWithObligatoryFields() {
@@ -60,7 +56,7 @@ public class DemoQaTestsFakerData {
                 .checkResult("Student Email", user_email)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile_number)
-                //.checkResult("Date of Birth", mobile_number)
+                .checkResult("Date of Birth", expectedDateBirth)
                 .checkResult("Subjects", subjects)
                 .checkResult("Hobbies", hobbies)
                 .checkResult("Picture", namePhoto)

@@ -2,7 +2,6 @@ package com.sigulia.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.sigulia.pages.components.CalendarComponent;
-import org.openqa.selenium.Dimension;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
