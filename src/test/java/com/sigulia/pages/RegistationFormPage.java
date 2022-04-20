@@ -31,8 +31,6 @@ public class RegistationFormPage {
                     hobbies = $("#hobbiesWrapper .custom-control"),
                     dateCalendar = $("#dateOfBirthInput");
 
-
-
     // actions
     public RegistationFormPage openPage () {
         open("/automation-practice-form");
@@ -80,16 +78,6 @@ public class RegistationFormPage {
         return this;
     }
 
-    public RegistationFormPage getGender() {
-//        SelenideElement gender = $("#genterWrapper");
-//        int x = gender.$$("[name='gender']").size();
-//        String genderArray[];
-//        genderArray = new String[3];
-//        String value = gender.$$("[name='gender']").get(1).getValue();
-//        genderArray [1] = value;
-
-        return this;
-    }
 
     public RegistationFormPage setPicture (String value) {
         picture.uploadFromClasspath(value);
