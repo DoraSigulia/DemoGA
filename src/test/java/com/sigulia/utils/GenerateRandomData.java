@@ -1,6 +1,6 @@
 package com.sigulia.utils;
-
 import org.apache.commons.lang3.RandomStringUtils;
+
 
 public class GenerateRandomData {
     // Create random string
