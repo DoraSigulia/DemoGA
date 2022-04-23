@@ -13,10 +13,10 @@ public class DemoqaTestsRandomData {
 
 
     GenerateFakerData faker = new GenerateFakerData();
-    String first_name = generatedString(),
-            last_name = generatedString(),
-            user_email = generatedString() + "@gmail.com",
-            mobile_number = generatedInt(),
+    String firstName = generatedString(),
+            lastName = generatedString(),
+            userEmail = generatedString() + "@gmail.com",
+            mobileNumber = generatedInt(),
             address = generatedString(),
             gender = faker.gender,
             day = faker.day,
@@ -27,7 +27,7 @@ public class DemoqaTestsRandomData {
             subjects = faker.subjects,
             state = faker.state,
             city = faker.city,
-            expectedFullName = format("" + first_name + " " + last_name + ""),
+            expectedFullName = format("" + firstName + " " + lastName + ""),
             expectedDateBirth = format("" + day + " " + month + "," + year + "");
 
 
@@ -42,10 +42,10 @@ public class DemoqaTestsRandomData {
     @Test
     void fillFormsWithObligatoryFields() {
         registationFormPage.openPage()
-                .setFirstName(first_name)
-                .setLastName(last_name)
-                .setUserEmail(user_email)
-                .setMobileNumber(mobile_number)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setMobileNumber(mobileNumber)
                 .setAddress(address)
                 .setGender(gender)
                 .setDateCalendar(day, month, year)
@@ -56,9 +56,9 @@ public class DemoqaTestsRandomData {
                 .setCity(city)
                 .clickOnSubmitButton()
                 .checkResult("Student Name", expectedFullName)
-                .checkResult("Student Email", user_email)
+                .checkResult("Student Email", userEmail)
                 .checkResult("Gender", gender)
-                .checkResult("Mobile", mobile_number)
+                .checkResult("Mobile", mobileNumber)
                 .checkResult("Date of Birth", expectedDateBirth)
                 .checkResult("Subjects", subjects)
                 .checkResult("Hobbies", hobbies)

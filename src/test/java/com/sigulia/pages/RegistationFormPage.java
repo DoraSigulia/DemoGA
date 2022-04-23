@@ -28,7 +28,7 @@ public class RegistationFormPage {
                     submitButton = $("#submit"),
                     table = $(".table-responsive"),
                     picture = $("#uploadPicture"),
-                    hobbies = $("#hobbiesWrapper .custom-control"),
+                    hobbies = $("#hobbiesWrapper"),
                     dateCalendar = $("#dateOfBirthInput");
 
     // actions

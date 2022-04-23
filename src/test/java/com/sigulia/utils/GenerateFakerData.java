@@ -7,10 +7,10 @@ import static java.lang.String.format;
 public class GenerateFakerData {
     Faker faker = new Faker();
 
-    public String first_name = faker.name().firstName(),
-            last_name = faker.name().lastName(),
-            user_email = faker.internet().emailAddress(),
-            mobile_number = faker.phoneNumber().subscriberNumber(10),
+    public String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            userEmail = faker.internet().emailAddress(),
+            mobileNumber = faker.phoneNumber().subscriberNumber(10),
             address = faker.address().fullAddress(),
             gender = "Other",
             subjects = "English",
@@ -21,7 +21,7 @@ public class GenerateFakerData {
             day = String.valueOf(faker.number().numberBetween(10, 30)),
             month = "March",
             year = String.valueOf(faker.number().numberBetween(1980, 2000)),
-            expectedFullName = format("" + first_name + " " + last_name + ""),
+            expectedFullName = format("" + firstName + " " + lastName + ""),
             expectedDateBirth = format("" + day + " " + month + "," + year + "");
 
 }
