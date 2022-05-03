@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.xlstest.XLS;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -37,6 +38,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Работа с файлами в старой Java")
     public void downloadFileOldJava () throws Exception {
         open("https://github.com/junit-team/junit5/blob/main/README.md");
         File anyFile = $("#raw-url").download();
@@ -47,6 +49,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Работа с файлами в новой Java")
     public void downloadFileNewJava () throws Exception {
         open("https://github.com/junit-team/junit5/blob/main/README.md");
         File anyFile = $("#raw-url").download();
@@ -55,6 +58,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Добавление файла")
     public void uploadFile () {
         open("https://demoqa.com/upload-download");
         $("input[type='file']")
@@ -63,6 +67,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Работа с pdf файлами")
     public void downloadPdf () throws Exception {
         open("https://junit.org/junit5/docs/current/user-guide/");
         File pdfFile = $(byText("PDF download")).download();
@@ -72,6 +77,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Работа с xls файлами")
     public void downloadXls () throws Exception {
         open("http://romashka2008.ru/price");
         File xlsFile = $(".site-main").$("p").$(byText("Скачать Прайс-лист Excel")).download();
@@ -85,6 +91,7 @@ public class downloadFiles {
     }
 
     @Test
+    @DisplayName("Работа с csv файлами из интернета")
     public void CsvDownload () throws Exception {
         open("https://support.staffbase.com/hc/en-us/articles/360007108391#csv-example-username");
         File file = $(byPartialLinkText("Download: CSV File with the Minimum Data Set for Username Onboarding")).download();
@@ -97,6 +104,7 @@ public class downloadFiles {
 
 
     @Test
+    @DisplayName("Работа с csv файлами из resources")
     public void CsvClassPath () throws Exception {
         try (InputStream is = classLoader.getResourceAsStream("email.csv");
             CSVReader csvReader = new CSVReader(new InputStreamReader(is))) {
@@ -108,6 +116,7 @@ public class downloadFiles {
 
 
     @Test
+    @DisplayName("Работа с zip файлами")
     void zipTest() throws Exception {
         ZipFile zf = new ZipFile(new File("src/test/resources/" + zipFile));
         ZipInputStream is = new ZipInputStream(Objects.requireNonNull(classLoader.getResourceAsStream(zipFile)));
