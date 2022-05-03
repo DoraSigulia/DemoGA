@@ -9,14 +9,22 @@ repositories {
 def selenideVersion = '6.4.0',
     junitVersion = "5.8.2",
     slf4jVersion = "1.7.36",
-    javafakerVersion = "1.0.2"
+    javafakerVersion = "1.0.2",
+    assertjVersion = "3.22.0",
+    pdfTestsVersion = "1.7.0",
+    xlxTestVersion = "1.4.0",
+    openCsvVersion = "5.6"
 
 dependencies {
     testImplementation (
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "com.github.javafaker:javafaker:$javafakerVersion")
+            "com.github.javafaker:javafaker:$javafakerVersion",
+            "org.assertj:assertj-core:$assertjVersion",
+            "com.codeborne:pdf-test:$pdfTestsVersion",
+            "com.codeborne:xls-test:$xlxTestVersion",
+            "com.opencsv:opencsv:$openCsvVersion")
 }
 
 compileTestJava {
