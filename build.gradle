@@ -13,7 +13,9 @@ def selenideVersion = '6.4.0',
     assertjVersion = "3.22.0",
     pdfTestsVersion = "1.7.0",
     xlxTestVersion = "1.4.0",
-    openCsvVersion = "5.6"
+    openCsvVersion = "5.6",
+    gsonVersion = "2.9.0",
+    jacksonVersiob = "2.13.2.2"
 
 dependencies {
     testImplementation (
@@ -24,7 +26,9 @@ dependencies {
             "org.assertj:assertj-core:$assertjVersion",
             "com.codeborne:pdf-test:$pdfTestsVersion",
             "com.codeborne:xls-test:$xlxTestVersion",
-            "com.opencsv:opencsv:$openCsvVersion")
+            "com.opencsv:opencsv:$openCsvVersion",
+            "com.google.code.gson:gson:$gsonVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersiob")
 }
 
 compileTestJava {

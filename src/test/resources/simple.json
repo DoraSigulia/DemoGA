@@ -1,0 +1,11 @@
+{
+  "name": "Daria",
+  "surname": "Sigulia",
+  "old": "25",
+  "job": "QA engineer",
+  "address": {
+    "street": "Mira",
+    "house": "14"
+  },
+  "hobby" : ["Sport", "Music", "Films"]
+}

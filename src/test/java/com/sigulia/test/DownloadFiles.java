@@ -2,11 +2,17 @@ package com.sigulia.test;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.internal.bind.JsonTreeReader;
 import com.opencsv.CSVReader;
+import com.sigulia.utils.People;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
@@ -23,7 +29,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-public class downloadFiles {
+public class DownloadFiles {
 
     ClassLoader classLoader = getClass().getClassLoader();
     String  pdfFile = "junit-user-guide-5.8.2.pdf",
@@ -152,6 +158,40 @@ public class downloadFiles {
             }
         }
     }
+
+    @Test
+    public void jsonFileGsonCommon() throws Exception {
+        Gson gson = new Gson();
+        try(InputStream is = classLoader.getResourceAsStream("simple.json")) {
+            String json = new String(is.readAllBytes().clone(), UTF_8);
+            JsonObject jo = gson.fromJson(json, JsonObject.class);
+            assertThat(jo.get("name").getAsString()).isEqualTo("Daria");
+            assertThat(jo.get("address").getAsJsonObject().get("street").getAsString()).isEqualTo("Mira");
+        }
+    }
+
+    @Test
+    public void jsonFileGson() throws Exception {
+        Gson gson = new Gson();
+        try(InputStream is = classLoader.getResourceAsStream("simple.json")) {
+            String json = new String(is.readAllBytes().clone(), UTF_8);
+            People jo = gson.fromJson(json, People.class);
+            assertThat(jo.name).isEqualTo("Daria");
+            assertThat(jo.address.street).isEqualTo("Mira");
+        }
+    }
+
+    @Test
+    public void jsonFileJackson() throws Exception {
+        ObjectMapper jackson = new ObjectMapper ();
+        try(InputStream is = classLoader.getResourceAsStream("simple.json")) {
+            String json = new String(is.readAllBytes().clone(), UTF_8);
+            People jo = jackson.readValue(json,People.class);
+            assertThat(jo.name).isEqualTo("Daria");
+            assertThat(jo.address.street).isEqualTo("Mira");
+        }
+    }
+
 }
 
 
