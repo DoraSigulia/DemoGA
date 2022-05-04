@@ -159,6 +159,7 @@ public class DownloadFiles {
         }
     }
 
+    @DisplayName("Работа с json файлами. Библиотека Gson")
     @Test
     public void jsonFileGsonCommon() throws Exception {
         Gson gson = new Gson();
@@ -170,6 +171,8 @@ public class DownloadFiles {
         }
     }
 
+
+    @DisplayName("Работа с json файлами. Библиотека Gson")
     @Test
     public void jsonFileGson() throws Exception {
         Gson gson = new Gson();
@@ -181,6 +184,8 @@ public class DownloadFiles {
         }
     }
 
+
+    @DisplayName("Работа с json файлами. Библиотека Jackson")
     @Test
     public void jsonFileJackson() throws Exception {
         ObjectMapper jackson = new ObjectMapper ();
