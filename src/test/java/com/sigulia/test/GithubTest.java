@@ -9,7 +9,8 @@ public class GithubTest {
     String  nameWebsite = "https://github.com/",
             nameRepository = "selenide/selenide",
             namePage = "Wiki",
-            nameWikiPage = "Soft assertions";
+            nameWikiPage = "SoftAssertions",
+            textForCheck = "3. Using JUnit5 extend test class:";
 
     GithubPages githubTest = new GithubPages();
 
@@ -20,12 +21,9 @@ public class GithubTest {
         githubTest.openPage(nameWebsite)
                 .searchNameRepository(nameRepository)
                 .clickOnPageInRepository(namePage)
-                .visibleTextWikiPage(nameWikiPage)
-                .clickOnVisibleTextWikiPage(nameWikiPage)
-                .visibleJunitExample();
+                .findTextWikiPage(nameWikiPage)
+                .visibleJunitExample(nameWikiPage, textForCheck);
     }
-
-
 
 
 }
