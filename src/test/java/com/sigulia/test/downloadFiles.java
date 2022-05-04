@@ -39,7 +39,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с файлами в старой Java")
-    public void downloadFileOldJava () throws Exception {
+    public void downloadFileOldJava() throws Exception {
         open("https://github.com/junit-team/junit5/blob/main/README.md");
         File anyFile = $("#raw-url").download();
         try (InputStream is = new FileInputStream(anyFile)) {
@@ -50,7 +50,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с файлами в новой Java")
-    public void downloadFileNewJava () throws Exception {
+    public void downloadFileNewJava() throws Exception {
         open("https://github.com/junit-team/junit5/blob/main/README.md");
         File anyFile = $("#raw-url").download();
         String readAnyFile = Files.readString(anyFile.toPath(), UTF_8);
@@ -59,7 +59,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Добавление файла")
-    public void uploadFile () {
+    public void uploadFile() {
         open("https://demoqa.com/upload-download");
         $("input[type='file']")
                 .uploadFromClasspath("README.md");
@@ -68,7 +68,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с pdf файлами")
-    public void downloadPdf () throws Exception {
+    public void downloadPdf() throws Exception {
         open("https://junit.org/junit5/docs/current/user-guide/");
         File pdfFile = $(byText("PDF download")).download();
         PDF file = new PDF(pdfFile);
@@ -78,7 +78,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с xls файлами")
-    public void downloadXls () throws Exception {
+    public void downloadXls() throws Exception {
         open("http://romashka2008.ru/price");
         File xlsFile = $(".site-main").$("p").$(byText("Скачать Прайс-лист Excel")).download();
         XLS fileXls = new XLS(xlsFile);
@@ -92,7 +92,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с csv файлами из интернета")
-    public void CsvDownload () throws Exception {
+    public void csvDownload() throws Exception {
         open("https://support.staffbase.com/hc/en-us/articles/360007108391#csv-example-username");
         File file = $(byPartialLinkText("Download: CSV File with the Minimum Data Set for Username Onboarding")).download();
         try (InputStream is = new FileInputStream(file);
@@ -105,7 +105,7 @@ public class downloadFiles {
 
     @Test
     @DisplayName("Работа с csv файлами из resources")
-    public void CsvClassPath () throws Exception {
+    public void csvClassPath() throws Exception {
         try (InputStream is = classLoader.getResourceAsStream("email.csv");
             CSVReader csvReader = new CSVReader(new InputStreamReader(is))) {
             List<String[]> content = csvReader.readAll();
@@ -130,8 +130,7 @@ public class downloadFiles {
                     assertThat(pdf.text).contains("JUnit 5 User Guide");
                     assertThat(pdf.numberOfPages).isEqualTo(166);
                 }
-            }
-            if (entry.getName().equals(csvFile)) {
+            } else if (entry.getName().equals(csvFile)) {
                 try (InputStream inputStream = zf.getInputStream(entry)) {
                     assert inputStream != null;
                     try (CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
@@ -139,8 +138,7 @@ public class downloadFiles {
                         assertThat(content.get(0)).contains("Username; Identifier;First name;Last name");
                     }
                 }
-            }
-            if (entry.getName().equals(xlsFile)) {
+            } else if (entry.getName().equals(xlsFile)) {
                 try (InputStream inputStream = zf.getInputStream(entry)) {
                     assert inputStream != null;
                     XLS fileXls = new XLS(inputStream);
