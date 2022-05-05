@@ -19,10 +19,10 @@ public class DragAndDropTest {
     @Test
     public void dragAndDrop(){
         open("https://the-internet.herokuapp.com/drag_and_drop");
-        squareAll.get(0).shouldHave(text(nameSquareA));
-        squareAll.get(1).shouldHave(text(nameSquareB));
+        squareA.shouldHave(text(nameSquareA));
+        squareB.shouldHave(text(nameSquareB));
         $(squareA).dragAndDropTo(squareB);
-        squareAll.get(1).shouldHave(text(nameSquareA));
-        squareAll.get(0).shouldHave(text(nameSquareB));
+        squareA.shouldHave(text(nameSquareB));
+        squareB.shouldHave(text(nameSquareA));
     }
 }
