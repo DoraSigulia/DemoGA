@@ -2,7 +2,6 @@ package com.sigulia.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.sigulia.pages.components.CalendarComponent;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -30,6 +29,7 @@ public class RegistationFormPage {
                     picture = $("#uploadPicture"),
                     hobbies = $("#hobbiesWrapper"),
                     dateCalendar = $("#dateOfBirthInput");
+
 
     // actions
     public RegistationFormPage openPage () {

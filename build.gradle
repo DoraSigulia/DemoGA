@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id "io.qameta.allure" version "2.9.6"
 }
 
 repositories {
@@ -15,7 +16,9 @@ def selenideVersion = '6.4.0',
     xlxTestVersion = "1.4.0",
     openCsvVersion = "5.6",
     gsonVersion = "2.9.0",
-    jacksonVersiob = "2.13.2.2"
+    jacksonVersiob = "2.13.2.2",
+    allureVersion = "2.17.3"
+
 
 dependencies {
     testImplementation (
@@ -28,7 +31,23 @@ dependencies {
             "com.codeborne:xls-test:$xlxTestVersion",
             "com.opencsv:opencsv:$openCsvVersion",
             "com.google.code.gson:gson:$gsonVersion",
-            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersiob")
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersiob",
+            "io.qameta.allure:allure-selenide:$allureVersion"
+    )
+}
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks{
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
 }
 
 compileTestJava {
@@ -37,4 +56,20 @@ compileTestJava {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+task demoqa_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags "for_jenkins"
+    }
 }
