@@ -10,7 +10,7 @@ import com.sigulia.utils.GenerateFakerData;
 
 import static io.qameta.allure.Allure.step;
 
-@Tag("for_jenkins")
+@Tag("demoqa")
 public class DemoQaTestsFakerData {
 
     @BeforeAll
