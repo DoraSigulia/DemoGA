@@ -1,9 +1,7 @@
 package com.sigulia.test;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.sigulia.pages.RegistationFormPage;
-import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.BeforeAll;
+import com.sigulia.pages.TestBase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.sigulia.utils.GenerateFakerData;
@@ -11,20 +9,15 @@ import com.sigulia.utils.GenerateFakerData;
 import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
-public class DemoQaTestsFakerData {
+public class DemoQaTestsFakerData extends TestBase {
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
 
     RegistationFormPage registationFormPage = new RegistationFormPage();
     GenerateFakerData faker = new GenerateFakerData();
 
     @Test
-    void fillFormsWithObligatoryFields() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+    @DisplayName("Fill registration form")
+    void fillRegistrationForm() {
         step("Open registration form", () -> {
             registationFormPage.openPage();
         });
