@@ -1,9 +1,9 @@
 package com.sigulia.helpers;
 
-import com.codeborne.selenide.Browser;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.sigulia.config.CredentialsConfig;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -16,6 +16,10 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class Attach {
+
+    static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+    static String selenoid = config.selenoid();
+
 
     @Attachment(value = "{attachName}", type = "text/plain")
     public static String attachAsText(String attachName, String message){
@@ -47,7 +51,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+        String videoUrl = "https://" + selenoid + "video/" + sessionId + ".mp4";
 
         try {
             return new URL(videoUrl);

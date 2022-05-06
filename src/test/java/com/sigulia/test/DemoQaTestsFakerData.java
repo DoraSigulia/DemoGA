@@ -1,6 +1,8 @@
 package com.sigulia.test;
+import com.sigulia.config.CredentialsConfig;
 import com.sigulia.pages.RegistationFormPage;
-import com.sigulia.pages.TestBase;
+import com.sigulia.helpers.TestBase;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
